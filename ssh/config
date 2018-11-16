@@ -1,17 +1,3 @@
-Host         40.73.37.81 40.73.39.124 40.73.36.43 40.73.33.137
-Port         22
-TCPKeepAlive=yes
-ServerAliveInterval 10
-ServerAliveCountMax 5
-PreferredAuthentications publickey
-IdentityFile ~/.ssh/id_rsa_Azure
-
-
-
-Host         149.129.85.118
-IdentityFile ~/.ssh/hunch_hongkong.pem
-
-
 Host *
 ServerAliveInterval 10
 ServerAliveCountMax 5

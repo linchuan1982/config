@@ -2,6 +2,16 @@ set nocompatible
 """"""""""""""Vundle Begin"""""""""""""""""""""""""""""
 filetype off
 
+"python with virtualenv support
+"py << EOF
+"import os
+"import sys
+"if 'VIRTUAL_ENV' in os.environ:
+"  project_base_dir = os.environ['VIRTUAL_ENV']
+"    activate_this = os.path.join(project_base_dir, 'bin/activate_this.py')
+"      execfile(activate_this, dict(__file__=activate_this))
+"      EOF
+
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
@@ -61,8 +71,8 @@ Plugin 'vim-airline/vim-airline-themes'
 Plugin 'kien/rainbow_parentheses.vim'
 
 """"for LaTeX
-Plugin 'vim-latex/vim-latex'
-Plugin 'xuhdev/vim-latex-live-preview'
+"Plugin 'vim-latex/vim-latex'
+"Plugin 'xuhdev/vim-latex-live-preview'
 
 """"""""""""""""""""ctrlsf, 文件夹搜索"""""""""""""""""""""
 Plugin 'dyng/ctrlsf.vim'
@@ -218,7 +228,16 @@ inoremap <expr> <PageUp>   pumvisible() ? "\<PageUp>\<C-p>\<C-n>" : "\<PageUp>"
 let g:ycm_key_list_stop_completion = ['<CR>']
 
 nnoremap <leader>jd :YcmCompleter GoToDefinitionElseDeclaration<CR> " 跳转到定义处
-let g:ycm_confirm_extra_conf=0                  " 关闭加载.ycm_extra_conf.py确认提示
+nnoremap <leader>jr :YcmCompleter GoToReferences<CR> " 跳转到定义处
+" let g:ycm_confirm_extra_conf=0                  " 关闭加载.ycm_extra_conf.py确认提示
+let g:ycm_python_interpreter_path = ''
+let g:ycm_python_sys_path = []
+let g:ycm_extra_conf_vim_data = [
+  \  'g:ycm_python_interpreter_path',
+  \  'g:ycm_python_sys_path'
+  \]
+let g:ycm_global_ycm_extra_conf = '~/global_extra_conf.py'
+
 
 """"""""""""""""""""""""""""""""""YCM"""""""""""""""""""""""""""""""""""""""""""""""""
 """"""""""""""""""""""""""""""""""YCM"""""""""""""""""""""""""""""""""""""""""""""""""
@@ -235,6 +254,16 @@ let g:syntastic_mode_map = {'mode': 'passive', 'active_filetypes': [], 'passive_
 " Use pylint to check python files.
 let g:syntastic_python_checkers = ['pylint']
 " map <F4> :SyntasticToggleMode<CR> :SyntasticCheck<CR>
+
+
+"""""""YCM FOR PYTHON VIRTUAL ENVIROMENT
+let g:ycm_python_interpreter_path = ''
+let g:ycm_python_sys_path = []
+let g:ycm_extra_conf_vim_data = [
+  \  'g:ycm_python_interpreter_path',
+  \  'g:ycm_python_sys_path'
+  \]
+let g:ycm_global_ycm_extra_conf = '~/global_extra_conf.py' 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Quickly Run
@@ -343,7 +372,7 @@ let g:airline#extensions#tabline#left_alt_sep = '|'
 map <F4> :TagbarToggle<CR>
 
 """"for LaTeX
-filetype plugin on
+"filetype plugin on
 "set grepprg=grep\ -nH\ $*
 "filetype indent on
 "let g:tex_flavor='latex'
@@ -355,7 +384,7 @@ let g:Tex_GotoError = 0
 let g:Tex_ShowErrorContext = 0
 "-----------------latex live preview-------------------------
 "autocmd filetype tex setl updatetime=1000
-autocmd Filetype tex setl updatetime=1
+"autocmd Filetype tex setl updatetime=1
 "let g:livepreview_previewer = 'open -a Skim'
 "let g:livepreview_previewer = 'open -a Preview'
-let g:livepreview_previewer = 'open -a texshop'
+"let g:livepreview_previewer = 'open -a texshop'
