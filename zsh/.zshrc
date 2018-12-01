@@ -120,10 +120,10 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-alias viwork="find . -name \*.py -print | xargs ~/config/vim/ptags.py; vim"
 alias mysql_aivideo="mysql -u hunch -pasdf1234 -D aivideo"
 alias mysql_python_server="mysql -u hunch -pasdf1234 -D python"
 alias mysql_go_server="mysql -u hunch -pasdf1234 -D go"
+alias viwork="viasset/urls.py asset/models.py asset/asset_util.py asset/asset_view_utils.py asset/asset_views.py asset/*.py project/*.py"
 
 export KEYTIMEOUT=1
 POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context virtualenv vcs dir vi_mode)
